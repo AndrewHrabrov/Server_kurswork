@@ -15,12 +15,12 @@ class UserInterface {
 private:
 	po::options_description desc;
 	po::variables_map vm;
-    Params params;
+    	Params params;
 
 public:
 	UserInterface();
 	bool Parser(int argc, const char** argv);
-    bool fileExists(const std::string& filename);
+   	bool fileExists(const std::string& filename);
  	std::string getDescription();
  	Params getParams() {
  		return params;
