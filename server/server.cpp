@@ -70,8 +70,7 @@ void Server::run() {
     }
     socklen_t socklen = sizeof (sockaddr_in);
 
-	
-	std::clog << "Server started..." << std::endl;
+    std::clog << "Server started..." << std::endl;
 	
     while (true) {
         std::unique_ptr <sockaddr_in> foreign_addr(new sockaddr_in);
@@ -81,7 +80,7 @@ void Server::run() {
 
         if (WorkSocket == -1) {
             logger.logError("Accept error", false);
-        	throw server_error(errno, "Accept error");
+            throw server_error(errno, "Accept error");
             continue; 
         }
         std::string ip_addr(inet_ntoa(foreign_addr->sin_addr));
