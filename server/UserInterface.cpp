@@ -8,7 +8,7 @@
 
 UserInterface::UserInterface() : desc("Allowed options") {
 	desc.add_options()
-            ("help,h" , "Выдать справку")
+            	("help,h" , "Выдать справку")
         	("database,d" , po::value<std::string>(&params.database)->required(), "База данных пользователей")
         	("logfile,l" , po::value<std::string>(&params.logfile)->required(), "Файл журнала")
         	("port,p", po::value<unsigned short int>(&params.port)->required(), "Порт сервера");
@@ -45,6 +45,3 @@ std::string UserInterface::getDescription()
 	ss << desc;
 	return ss.str();
 }
-
-        
-   
