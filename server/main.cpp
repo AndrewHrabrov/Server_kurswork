@@ -13,7 +13,7 @@ int main(int argc, const char** argv) {
 		std::cout << "logfile: " << params.logfile << "\n";
 		std::cout << "port: " << params.port << "\n";
 		Server server(params.database, params.port, params.logfile);
-    	server.run();
+    		server.run();
 	}
 	
 	} catch(po::error& e) {
@@ -29,10 +29,10 @@ int main(int argc, const char** argv) {
 		std::cerr << "error: " << e.what() << "\n";
 		return 3;
         
-    } catch (std::system_error &e) {
-        std::cerr << e.what() << std::endl;
-        std::quick_exit(2);
-    } catch(...) {
+        } catch (std::system_error &e) {
+         	std::cerr << e.what() << std::endl;
+        	std::quick_exit(2);
+    	} catch(...) {
 		std::cerr << "Exception of unknown type!\n";
 		std::terminate();
 	} 
