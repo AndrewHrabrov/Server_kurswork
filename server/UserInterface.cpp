@@ -83,6 +83,3 @@ std::string UserInterface::getDescription()
 	ss << desc;
 	return ss.str();
 }
-
-        
-   
