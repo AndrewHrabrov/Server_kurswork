@@ -6,13 +6,15 @@
 #include "serv_error.h"
 #include <boost/filesystem.hpp>
 #include <boost/program_options.hpp>
+#include <cmath>
+#include <limits>
 
 UserInterface::UserInterface() : desc("Allowed options") {
 	desc.add_options()
             ("help,h" , "Выдать справку")
         	("database,d" , po::value<std::string>(&params.database)->required(), "База данных пользователей")
         	("logfile,l" , po::value<std::string>(&params.logfile)->required(), "Файл журнала")
-        	("port,p", po::value<unsigned short int>(&params.port)->required(), "Порт сервера");
+        	("port,p", po::value<unsigned short int>(&params.port)->default_value(33333), "Порт сервера, от 1024 до 65535!");
 }
 
 bool UserInterface::fileExists(const std::string& filename) {
@@ -24,61 +26,46 @@ bool UserInterface::Parser(int argc, const char** argv) {
     try {
         po::store(po::parse_command_line(argc, argv, desc), vm);
 
-        if (!vm.count("port") || !vm.count("database") || !vm.count("logfile")) {
-            std::cout << desc << std::endl;
-            return false;
-        }
-
         if (vm.count("help")) {
             std::cout << desc << std::endl;
             return false;
         }
 
         po::notify(vm);
-
-        if (!vm.count("port")) {
-            throw std::logic_error("Error: --port option is required.");
-        }
-        if (!vm.count("database")) {
-            throw std::logic_error("Error: --database option is required.");
-        }
-        if (!vm.count("logfile")) {
-            throw std::logic_error("Error: --logfile option is required.");
+        if (!vm.count("database") || (vm.count("database") && params.database.empty())) {
+            throw po::required_option("database");
         }
         
-        std::string database = vm["database"].as<std::string>();
-        std::string logfile = vm["logfile"].as<std::string>();
-        unsigned short int port = vm["port"].as<unsigned short int>();
-        if (!fileExists(database)) {
-            throw FileError("Database file does not exist!");
-            return false;
+        else if (!vm.count("logfile") || (vm.count("logfile") && params.logfile.empty())) {
+            throw po::required_option("logfile");
         }
         
-        else if (!fileExists(logfile)) {
-            throw FileError("Log file does not exist");
-            return false;
+        
+        else if (params.port > 0 && params.port < 1023) { // от 0 до 1023 - диапазон зарезервированных системных сетевых портов
+            throw std::invalid_argument("Invalid port");
         }
         
-        if (port < 0 || port > 65535) { //65535 - максимальный возможный порт
+        else if (!fileExists(params.database) || !fileExists(params.logfile)) {
+            throw FileError("File does not exist!");
         }
+        
         return true;
+    
     } catch (const FileError& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-        exit(1);
-    } catch (po::invalid_command_line_syntax& e) {
-		std::cerr << "error: " << e.what() << "\n";
-		std::cerr << "Use -h for help\n";
-		exit(1);
-	} catch (po::required_option& e) {
-		std::cerr << "error: " << e.what() << "\n";
-		exit(1);
-	} catch (po::error& e) {
-		std::cerr << "error: " << e.what() << "\n";
-		std::cerr << "Use -h for help\n";
-        exit(1);
-    } catch (std::runtime_error& e) {
-		std::cerr << "error: " << e.what() << "\n";
-        exit(1);
+        std::cerr << e.what() << std::endl;
+        return false;
+    } catch (const std::invalid_argument& e) {
+        std::cerr << e.what() << std::endl;
+        std::cout << desc << std::endl;
+        return false;
+    } catch (const po::required_option& e) {
+        std::cerr << "Error parsing command line " << e.what() << std::endl;
+        std::cout << desc << std::endl;
+        return false;
+    } catch (const po::error& e) {
+        std::cerr << "Error parsing command line: " << e.what() << std::endl;
+        std::cout << desc << std::endl;
+        return false;
     }
 }
 
@@ -88,6 +75,3 @@ std::string UserInterface::getDescription()
 	ss << desc;
 	return ss.str();
 }
-
-        
-   
