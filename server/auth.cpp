@@ -40,37 +40,38 @@ void Auth::authentication(int socket, std::string database) {
     }
     std::clog << "log: detect SALT: " << salt_16 << std::endl;
     
-    std::clog << "log: detect USERNAME: " << message << std::endl;
+    std::clog << "log: detect USERNAME:" << message << "\n==============================\n";
     
     try {
         std::string pass = getPass(database, message);
-        if (pass.empty()) { 
-            logger.logError("Auth error: user not found", false);
-            sendMessage(socket, "Auth error: user not found");
-        }
-        
         std::string hash_calculated = calculateHash(pass, salt_16);
 
         if (hash_calculated != hash_16) {
             sendMessage(socket, "ERR");
             logger.logError("Auth error: password mismatch", false);
-            throw auth_error("Auth error: password mismatch");
+            throw auth_error("Auth error: password mismatch ");
         }
 
         sendMessage(socket, "OK");
         processVectors(socket);
-    }
-    catch (const FileError& e) {
+        std::clog << "Result has been sent to client\n==============================\n"; 
+        
+    } catch (const FileError& e) {
         std::cerr << "Error: " << e.what() << std::endl;
-        exit(1);
-    }
-    catch (const auth_error& e) {
+    } catch (const vector_error& e) {
         std::cerr << "Error: " << e.what() << std::endl;
+    } catch (const auth_error& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        logger.logError("Auth error: user not found", false);
+        sendMessage(socket, "Auth error: user not found \n");
+    } catch (const std::system_error& e) {
+        std::cerr << e.what() << std::endl;
     }
     
 }
 
-std::string Auth::read_buffer() //Чтение буффера, метод удвоения в цикле
+//Чтение буффера, метод удвоения в цикле
+std::string Auth::read_buffer() 
 {
     int rc;
     int buflen = BUFLEN;
@@ -98,29 +99,37 @@ std::string Auth::read_buffer() //Чтение буффера, метод удв
 
 // Чтение базы данных и поиск пароля по логину
 std::string Auth::getPass(const std::string& filename, const std::string& username) { 
-    std::fstream file;
-    std::string line;
-    file.open(filename);
-    if (file.is_open()) {
-        while (std::getline(file, line)) {
-            std::stringstream ss(line);
-            std::string login, pass;
-            std::getline(ss, login, ':'); 
-            std::getline(ss, pass);    
+    std::ifstream file(filename); 
 
-            if (login == username) {
-                file.close();
-                return pass;
-            }
-        }
-        file.close();
-        return "";
-    }
-    else {
-        logger.logError("Unable to open database file", true);
-        file.close();
+    if (!file.is_open()) {
+        logger.logError("Unable to open database file", false);
         throw FileError("Unable to open database file ");
     }
+
+    std::string line;
+    std::string pass; 
+
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::string login;
+        std::getline(ss, login, ':');
+
+        if (!ss.eof()) { 
+            std::string pass; 
+            std::getline(ss, pass);
+            if (login == username) {
+                file.close();
+                return pass; 
+            }
+        }
+        else {
+           logger.logError("Invalid line format in database", false);
+           throw auth_error("Invalid line format in database");
+        }
+    }
+    file.close();
+    logger.logError("User not found!", false);
+    throw auth_error("User not found!");
 }
 
 void Auth::sendMessage(int socket, const std::string& message) {
@@ -148,6 +157,7 @@ std::string Auth::calculateHash(const std::string& pass, const std::string& salt
 // Обработка вектора. Операция: сумма квадратов
 void Auth::processVectors(int client_socket) {
     uint32_t num_vectors;
+    std::clog << "Фаза приема и обработки векторов: \n==============================\n";
     if (recv(client_socket, &num_vectors, sizeof(num_vectors), 0) == -1) {
         logger.logError("Recv number of vectors error", false);
         throw std::system_error(errno, std::generic_category(), "Recv number of vectors error");
@@ -168,19 +178,28 @@ void Auth::processVectors(int client_socket) {
         else if (vector_len > std::numeric_limits<uint32_t>::max() || vector_len < 0) {
             throw vector_error("Vector error: mismatch actual and expected size");
         }
-
+        std::clog << "Vector is accepted\n";
         uint32_t sum_of_squares = 0;
         for (const auto& x : vector) {
-            if (sum_of_squares + pow(x, 2) > std::numeric_limits<uint32_t>::max()) {
+            if (x >= sqrt(std::numeric_limits<uint32_t>::max())) {   
+                sum_of_squares = std::numeric_limits<uint32_t>::max();
+                break;
+            }
+            else if (x < 0) {
+                throw vector_error("Vector error: mismatch actual and expected size");
+            }
+            else if (sum_of_squares + pow(x, 2) > std::numeric_limits<uint32_t>::max()) {
                 sum_of_squares = std::numeric_limits<uint32_t>::max();
                 break;
             }
             sum_of_squares += pow(x, 2);
         }
-
+        std::clog << "Vector has been processed\n";
+        
         if (send(client_socket, &sum_of_squares, sizeof(sum_of_squares), 0) == -1) {
             logger.logError("Send result error", false);
             throw std::system_error(errno, std::generic_category(), "Send result error");
         }
+        std::clog << "Result has been sent to client\n==============================\n";
     }
 }
