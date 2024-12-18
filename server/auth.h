@@ -1,4 +1,5 @@
 #pragma once
+// #define private   public // Для модульного тестирования приватных методов класса
 #include <iostream>
 #include <string>
 #include <string_view>
@@ -32,3 +33,5 @@ private:
     void processVectors(int client_socket);
     std::string getPass(const std::string& filename, const std::string& username);
 };
+
+// #undef private // Для модульного тестирования приватных методов класса
