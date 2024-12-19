@@ -70,7 +70,8 @@ void Server::run() {
     }
     socklen_t socklen = sizeof (sockaddr_in);
 
-    std::clog << "Server started..." << std::endl;
+	
+	std::clog << "Server started...\n==============================\n";
 	
     while (true) {
         std::unique_ptr <sockaddr_in> foreign_addr(new sockaddr_in);
@@ -80,11 +81,12 @@ void Server::run() {
 
         if (WorkSocket == -1) {
             logger.logError("Accept error", false);
-            throw server_error(errno, "Accept error");
+        	throw server_error(errno, "Accept error");
             continue; 
         }
         std::string ip_addr(inet_ntoa(foreign_addr->sin_addr));
-        std::cout << "New client connected. \n";
+        std::clog << "New client connected \n==============================\n";
+        std::clog << "Фаза аутентификации:\n==============================\n";
         struct timeval timeout {180, 0};
         setsockopt(WorkSocket, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
         
@@ -92,11 +94,13 @@ void Server::run() {
             Auth auth(WorkSocket, logfile);
             auth.authentication(WorkSocket, database);
         } catch(const auth_error& e) {
-            std::cerr << "error: " << e.what() << "\n";
+            std::cerr << e.what() << std::endl;
         } catch (server_error &e) {
             std::cerr << e.what() << std::endl;
         } catch (vector_error &e) {
             std::cerr << e.what() << std::endl;
         }
+        close(WorkSocket);
+        std::clog << "log: Connection close\n==============================\n";
     }
 }
