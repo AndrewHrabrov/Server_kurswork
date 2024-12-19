@@ -62,7 +62,6 @@ void Auth::authentication(int socket, std::string database) {
         std::cerr << "Error: " << e.what() << std::endl;
     } catch (const auth_error& e) {
         std::cerr << "Error: " << e.what() << std::endl;
-        logger.logError("Auth error: user not found", false);
         sendMessage(socket, "Auth error: user not found \n");
     } catch (const std::system_error& e) {
         std::cerr << e.what() << std::endl;
@@ -185,9 +184,7 @@ void Auth::processVectors(int client_socket) {
                 sum_of_squares = std::numeric_limits<uint32_t>::max();
                 break;
             }
-            else if (x < 0) {
-                throw vector_error("Vector error: mismatch actual and expected size");
-            }
+            
             else if (sum_of_squares + pow(x, 2) > std::numeric_limits<uint32_t>::max()) {
                 sum_of_squares = std::numeric_limits<uint32_t>::max();
                 break;
