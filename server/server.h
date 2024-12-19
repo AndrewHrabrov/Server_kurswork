@@ -1,7 +1,16 @@
+/** @file
+ * @author Храбров А.А.
+ * @version 1.0
+ * @date 18.12.2024
+ * @copyright ИБСТ ПГУ
+ * @warning Тестовый
+ * @brief Заголовочный файл для модуля сетевого взаимодействия server.h
+*/
+
 #pragma once
 #include <iostream>
-#include <sys/socket.h>
 #include <netinet/in.h>
+#include <sys/socket.h>
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <string>
@@ -9,28 +18,76 @@
 #include <stdexcept>
 #include <fstream>
 
+/** @brief Класс логирования
+ * @details В конструкторе устанавливается название файла журнала для логирования.
+ * Класс содержит метод записи информации об ошибках в файл журнала 
+ * и метод получения времени возбуждения исключения.
+ */
+
 class Logger {
 public:
+    /**
+     * @brief Конструктор класса Logger
+     * @details Конструктор открывает файл журнала
+     * @param [in] filename назвние файла журнала
+     * @throw FileError, если файл не открывается или его не существует
+     */
     Logger(const std::string& filename);
+    
+    /**
+     * @brief Метод записи информации об ошибках в файл журнала
+     * @details Записывается дата и время возникновения ошибки, критичность ошибки
+     * и информация об ошибке.
+     * @param [in] message сообщение об ошибке, critical критичность ошибки
+     */
     void logError(const std::string& message, bool critical);
 private:
-    std::ofstream logFile;
-    std::string logFilename;
+    std::ofstream logFile; ///< Поток для записи информации об ошибках в файл журнала
+    std::string logFilename; ///< Название файла журнала
+    
+    /**
+     * @brief Метод получения текущей даты и времени
+     * @return ss.str() строка из потока с текущей датой и временем
+     */
     std::string getCurrentDateTime();
 };
 
+/** @brief Класс сетевого взаимодействия
+ * @details В конструкторе устанавливается название файла журнала для логирования
+ * название файла с базой клиентов и сетевой порт, создается серверный сокет,
+ * подготавливаются сетевые адреса и привязывается адрес к серверному сокету
+ * Класс содержит метод run для запуска сервера.
+ */
+
 class Server {
 public:
+    /**
+     * @brief Конструктор класса Server
+     * @details Конструктор устанавливает название файла журнала, название файла с базой клиентов
+     * и порт, вызывает конструктор класса Logger.
+     * Создает серверный сокет, настравиваются сетевые адреса и привязывается адрес к серверному порту.
+     * @param [in] database файл с базой клиентов  
+     * @param [in] port сетевой порт, на котором будет работать сервер
+     * @param [in] logfile название файла журнала
+     * @throw server_error, при возникновения ошибок создания сокета или привязки адреса к серверному сокету
+     */
     Server(const std::string& database, unsigned short int port, const std::string& logfile);
-    ~Server();
+    ~Server(); ///< Деструктор класса Server. Закрывает серверный сокет
+    
+    /**
+     * @brief Метод запуска сервера
+     * @details Переводит сервер в режим прослушивания, устанавливает соединения с клиентом и 
+     * вызывает функцию аутентификации, если соединение установлено.
+     * @throw server_error, при возникновения ошибок прослушивания или установки соединения с клиентом
+     */
     void run();
     
 private:
-    std::string database;
-    unsigned short int port;
-    std::string logfile;
-    Logger logger;
-    int serverSocket;
-    std::unique_ptr<sockaddr_in> self_addr;
-    std::unique_ptr<sockaddr_in> foreign_addr;
+    std::string database; ///< Название файла с базой клиентов
+    unsigned short int port; ///< Значение сетевого порта, на котором работает сервер
+    std::string logfile; ///< Название файла журнала
+    Logger logger; ///< Объект класса Logger
+    int serverSocket; ///< Идентификатор серверного сокета
+    std::unique_ptr<sockaddr_in> self_addr; ///< Умный указатель серверного адреса
+    std::unique_ptr<sockaddr_in> foreign_addr; ///< Умный указатель адреса клиента
 };
