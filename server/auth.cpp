@@ -64,7 +64,9 @@ void Auth::authentication(int socket, std::string database) {
         std::cerr << "Error: " << e.what() << std::endl;
         sendMessage(socket, "Auth error: user not found \n");
     } catch (const std::system_error& e) {
-        std::cerr << e.what() << std::endl;
+        std::cerr << e.what() << std::endl; 
+    } catch (const std::bad_alloc& e) {
+        std::cerr << e.what() << std::endl; 
     }
     
 }
@@ -160,6 +162,7 @@ void Auth::processVectors(int client_socket) {
     if (recv(client_socket, &num_vectors, sizeof(num_vectors), 0) == -1) {
         logger.logError("Recv number of vectors error", false);
         throw std::system_error(errno, std::generic_category(), "Recv number of vectors error");
+        return;
     }
 
     for (uint32_t i = 0; i < num_vectors; ++i) {
@@ -167,15 +170,25 @@ void Auth::processVectors(int client_socket) {
         if (recv(client_socket, &vector_len, sizeof(vector_len), 0) == -1) {
             logger.logError("Recv vector size error", false);
             throw std::system_error(errno, std::generic_category(), "Recv vector size error");
+            continue;
         }
 
         std::vector<uint32_t> vector(vector_len);
-        if (recv(client_socket, vector.data(), vector_len * sizeof(uint32_t), 0) == -1) {
+        int rc = recv(client_socket, vector.data(), vector_len * sizeof(uint32_t), 0);
+        if (rc == -1) {
             logger.logError("Recv vector error", false);
             throw std::system_error(errno, std::generic_category(), "Recv vector error");
+            continue;
         }
+        
+        else if (sizeof(uint32_t) * vector_len != (uint32_t)rc) {
+            throw vector_error("Vector error: mismatch actual and expected size");
+            continue;
+        }
+        
         else if (vector_len > std::numeric_limits<uint32_t>::max() || vector_len < 0) {
             throw vector_error("Vector error: mismatch actual and expected size");
+            continue;
         }
         std::clog << "Vector is accepted\n";
         uint32_t sum_of_squares = 0;
