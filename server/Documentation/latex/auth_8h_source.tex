@@ -1,0 +1,69 @@
+\hypertarget{auth_8h_source}{}\doxysection{auth.\+h}
+\mbox{\hyperlink{auth_8h}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 \textcolor{comment}{// \#define private   public // Для модульного тестирования приватных методов класса}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <string\_view>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <cryptopp/hex.h>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <cryptopp/sha.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <cryptopp/cryptlib.h>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <cryptopp/files.h>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <cryptopp/osrng.h>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{comment}{/*}}
+\DoxyCodeLine{22 \textcolor{comment}{ * @file UserInterface.h}}
+\DoxyCodeLine{23 \textcolor{comment}{ * @brief Этот файл содержит объявления для функций, связанных с пользовательским интерфейсом}}
+\DoxyCodeLine{24 \textcolor{comment}{ */}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{UserInterface_8h}{UserInterface.h}}"{}}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{comment}{/*}}
+\DoxyCodeLine{29 \textcolor{comment}{ * @file serv\_error.h}}
+\DoxyCodeLine{30 \textcolor{comment}{ * @brief Этот файл содержит классы возбуждаемых исключений}}
+\DoxyCodeLine{31 \textcolor{comment}{ */}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{serv__error_8h}{serv\_error.h}}"{}}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{comment}{/*}}
+\DoxyCodeLine{36 \textcolor{comment}{ * @file server.h}}
+\DoxyCodeLine{37 \textcolor{comment}{ * @brief Этот файл содержит объявления для функций, связанных с сетевым взаимодействием}}
+\DoxyCodeLine{38 \textcolor{comment}{ */}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{server_8h}{server.h}}"{}}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define BUFLEN 5024 }}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{47 \textcolor{keyword}{namespace }CPP = CryptoPP; }
+\DoxyCodeLine{48 }
+\DoxyCodeLine{55 \textcolor{keyword}{class }\mbox{\hyperlink{classAuth}{Auth}} \{}
+\DoxyCodeLine{56 \textcolor{keyword}{public}:}
+\DoxyCodeLine{63     \mbox{\hyperlink{classAuth_a3990b0eb55e143c0c600d0b833ca7c20}{Auth}}(\textcolor{keywordtype}{int} socket, std::string file);}
+\DoxyCodeLine{64     }
+\DoxyCodeLine{65     \mbox{\hyperlink{classAuth_ad8dc7bc4d6f0e02ef07977148aba71e5}{\string~Auth}}(); }
+\DoxyCodeLine{66     }
+\DoxyCodeLine{79     \textcolor{keywordtype}{void} \mbox{\hyperlink{classAuth_ad3bcc3032fad8521067715b7ba806c51}{authentication}}(\textcolor{keywordtype}{int} socket, std::string \mbox{\hyperlink{classAuth_a03eaac320cb5f741ab3205ea28f026d4}{database}});}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{keyword}{private}:}
+\DoxyCodeLine{82     \textcolor{keywordtype}{int} \mbox{\hyperlink{classAuth_a666455f2d54f4cc804c736beffacc6c2}{clientSocket}}; }
+\DoxyCodeLine{83     std::string \mbox{\hyperlink{classAuth_a03eaac320cb5f741ab3205ea28f026d4}{database}}; }
+\DoxyCodeLine{84     std::string \mbox{\hyperlink{classAuth_ac2d7921b0cbb646349851bf18956908f}{logfile}}; }
+\DoxyCodeLine{85     \mbox{\hyperlink{classLogger}{Logger}} \mbox{\hyperlink{classAuth_a2527b8c893bf56d54cf3854975ec0f7f}{logger}}; }
+\DoxyCodeLine{86     CryptoPP::HashTransformation*  hash; }
+\DoxyCodeLine{87     }
+\DoxyCodeLine{93     std::string \mbox{\hyperlink{classAuth_a7fa87faa3991e7fbb49be83408cb1e11}{read\_buffer}}(); }
+\DoxyCodeLine{94     }
+\DoxyCodeLine{101     \textcolor{keywordtype}{void} \mbox{\hyperlink{classAuth_ac0b6895f67f99b404aca24ef30d73c97}{sendMessage}}(\textcolor{keywordtype}{int} socket, \textcolor{keyword}{const} std::string\& message);}
+\DoxyCodeLine{102     }
+\DoxyCodeLine{110     std::string \mbox{\hyperlink{classAuth_af1406df4619c154a3d0d16e116f03aaf}{calculateHash}}(\textcolor{keyword}{const} std::string\& pass, \textcolor{keyword}{const} std::string\& salt);}
+\DoxyCodeLine{111     }
+\DoxyCodeLine{122     \textcolor{keywordtype}{void} \mbox{\hyperlink{classAuth_a7c8ed11f95a8e6352bba7b71bf8386cd}{processVectors}}(\textcolor{keywordtype}{int} client\_socket);}
+\DoxyCodeLine{123     }
+\DoxyCodeLine{132     std::string \mbox{\hyperlink{classAuth_aa53d9bec1c891243b2d42d7b407c5c81}{getPass}}(\textcolor{keyword}{const} std::string\& filename, \textcolor{keyword}{const} std::string\& username);}
+\DoxyCodeLine{133 \};}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 \textcolor{comment}{// \#undef private // Для модульного тестирования приватных методов класса}}
+
+\end{DoxyCode}

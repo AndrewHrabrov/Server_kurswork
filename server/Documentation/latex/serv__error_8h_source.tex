@@ -1,0 +1,32 @@
+\hypertarget{serv__error_8h_source}{}\doxysection{serv\+\_\+error.\+h}
+\mbox{\hyperlink{serv__error_8h}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <system\_error>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{classserver__error}{server\_error}} : \textcolor{keyword}{public} std::system\_error \{}
+\DoxyCodeLine{20 \textcolor{keyword}{public}:}
+\DoxyCodeLine{21     \mbox{\hyperlink{classserver__error}{server\_error}}(\textcolor{keywordtype}{int} code, \textcolor{keyword}{const} std::string\& s) : std::system\_error(code, std::generic\_category(), s) \{\}}
+\DoxyCodeLine{22 \};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{28 \textcolor{keyword}{class }\mbox{\hyperlink{classauth__error}{auth\_error}}: \textcolor{keyword}{public} std::runtime\_error \{}
+\DoxyCodeLine{29 \textcolor{keyword}{public}:}
+\DoxyCodeLine{30     \mbox{\hyperlink{classauth__error}{auth\_error}}(\textcolor{keyword}{const} std::string\& s) : std::runtime\_error(s) \{\}}
+\DoxyCodeLine{31     \mbox{\hyperlink{classauth__error}{auth\_error}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} * s) : std::runtime\_error(s) \{\}}
+\DoxyCodeLine{32 \};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{38 \textcolor{keyword}{class }\mbox{\hyperlink{classvector__error}{vector\_error}}: \textcolor{keyword}{public} std::runtime\_error \{}
+\DoxyCodeLine{39 \textcolor{keyword}{public}:}
+\DoxyCodeLine{40     \mbox{\hyperlink{classvector__error}{vector\_error}}(\textcolor{keyword}{const} std::string\& s) : std::runtime\_error(s) \{\}}
+\DoxyCodeLine{41     \mbox{\hyperlink{classvector__error}{vector\_error}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} * s) : std::runtime\_error(s) \{\}}
+\DoxyCodeLine{42 \};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{48 \textcolor{keyword}{class }\mbox{\hyperlink{classFileError}{FileError}} : \textcolor{keyword}{public} std::runtime\_error \{}
+\DoxyCodeLine{49 \textcolor{keyword}{public}:}
+\DoxyCodeLine{50     \mbox{\hyperlink{classFileError}{FileError}}(\textcolor{keyword}{const} std::string\& s) : std::runtime\_error(s) \{\}}
+\DoxyCodeLine{51 \};}
+
+\end{DoxyCode}

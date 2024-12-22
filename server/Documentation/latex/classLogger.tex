@@ -1,0 +1,97 @@
+\hypertarget{classLogger}{}\doxysection{Класс Logger}
+\label{classLogger}\index{Logger@{Logger}}
+
+
+Класс логирования  
+
+
+
+
+{\ttfamily \#include $<$server.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classLogger_a4f2ee02db1d03a83b6b9b43808e09f15}{Logger}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Конструктор класса \mbox{\hyperlink{classLogger}{Logger}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLogger_a354991ef8abbbde3af26d4ecc0688a87}{log\+Error}} (const std\+::string \&message, bool critical)
+\begin{DoxyCompactList}\small\item\em Метод записи информации об ошибках в файл журнала \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые члены}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classLogger_a8483479118aba0b4aa3c47a2d7508394}{get\+Current\+Date\+Time}} ()
+\begin{DoxyCompactList}\small\item\em Метод получения текущей даты и времени \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLogger_acc94bd19d6a022e574a5733c87fed67a}\label{classLogger_acc94bd19d6a022e574a5733c87fed67a}} 
+std\+::ofstream {\bfseries log\+File}
+\begin{DoxyCompactList}\small\item\em Поток для записи информации об ошибках в файл журнала \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLogger_a754ba70fbdab7693f357da693fb8d49e}\label{classLogger_a754ba70fbdab7693f357da693fb8d49e}} 
+std\+::string {\bfseries log\+Filename}
+\begin{DoxyCompactList}\small\item\em Название файла журнала \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс логирования 
+
+В конструкторе устанавливается название файла журнала для логирования. Класс содержит метод записи информации об ошибках в файл журнала и метод получения времени возбуждения исключения. 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classLogger_a4f2ee02db1d03a83b6b9b43808e09f15}\label{classLogger_a4f2ee02db1d03a83b6b9b43808e09f15}} 
+\index{Logger@{Logger}!Logger@{Logger}}
+\index{Logger@{Logger}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{Logger()}{Logger()}}
+{\footnotesize\ttfamily Logger\+::\+Logger (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Конструктор класса \mbox{\hyperlink{classLogger}{Logger}}. 
+
+Конструктор открывает файл журнала 
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em filename} & назвние файла журнала \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em \mbox{\hyperlink{classFileError}{File\+Error}},если} & файл не открывается или его не существует \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classLogger_a8483479118aba0b4aa3c47a2d7508394}\label{classLogger_a8483479118aba0b4aa3c47a2d7508394}} 
+\index{Logger@{Logger}!getCurrentDateTime@{getCurrentDateTime}}
+\index{getCurrentDateTime@{getCurrentDateTime}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{getCurrentDateTime()}{getCurrentDateTime()}}
+{\footnotesize\ttfamily std\+::string Logger\+::get\+Current\+Date\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Метод получения текущей даты и времени 
+
+\begin{DoxyReturn}{Возвращает}
+ss.\+str() строка из потока с текущей датой и временем 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLogger_a354991ef8abbbde3af26d4ecc0688a87}\label{classLogger_a354991ef8abbbde3af26d4ecc0688a87}} 
+\index{Logger@{Logger}!logError@{logError}}
+\index{logError@{logError}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{logError()}{logError()}}
+{\footnotesize\ttfamily void Logger\+::log\+Error (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message,  }\item[{bool}]{critical }\end{DoxyParamCaption})}
+
+
+
+Метод записи информации об ошибках в файл журнала 
+
+Записывается дата и время возникновения ошибки, критичность ошибки и информация об ошибке. 
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em message} & сообщение об ошибке, critical критичность ошибки \\
+\hline
+\end{DoxyParams}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{server_8h}{server.\+h}}\item 
+server.\+cpp\end{DoxyCompactItemize}

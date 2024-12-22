@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.4"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Сервер для курсовой работы: Исходный файл UserInterface.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Сервер для курсовой работы<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Сервер предназначен для вычисления суммы квадратов</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Поиск','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">UserInterface.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="UserInterface_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;boost/program_options.hpp&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;boost/filesystem.hpp&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span>po = boost::program_options; </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span>fs = boost::filesystem;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structParams.html">   28</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structParams.html">Params</a> {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structParams.html#a19406f57a8fcbb9ab7c56db1bc34bd37">   29</a></span>    std::string <a class="code hl_variable" href="structParams.html#a19406f57a8fcbb9ab7c56db1bc34bd37">logfile</a>; </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structParams.html#a90e5823d1ca3b3480b32b98cc7575d48">   30</a></span>    std::string <a class="code hl_variable" href="structParams.html#a90e5823d1ca3b3480b32b98cc7575d48">database</a>; </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structParams.html#a6ca678421b35d548d3c7c579b5f38e1b">   31</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structParams.html#a6ca678421b35d548d3c7c579b5f38e1b">port</a>; </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classUserInterface.html">   36</a></span><span class="keyword">class </span><a class="code hl_class" href="classUserInterface.html">UserInterface</a> {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classUserInterface.html#a8732adad80804d2e9faab20fb67e982a">   38</a></span>    po::options_description <a class="code hl_variable" href="classUserInterface.html#a8732adad80804d2e9faab20fb67e982a">desc</a>; </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classUserInterface.html#a1e674eb55d4585aad18a6000bcdccd7f">   39</a></span>    po::variables_map <a class="code hl_variable" href="classUserInterface.html#a1e674eb55d4585aad18a6000bcdccd7f">vm</a>; </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classUserInterface.html#ad5078d6d2a0953315f2a03f50fcf91d0">   40</a></span>    <a class="code hl_struct" href="structParams.html">Params</a> <a class="code hl_variable" href="classUserInterface.html#ad5078d6d2a0953315f2a03f50fcf91d0">params</a>; </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_function" href="classUserInterface.html#ae6fb70370701b3bd6120e923df9705b0">UserInterface</a>();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classUserInterface.html#adbce186e2a500e1e9566388cd51ed7a4">Parser</a>(<span class="keywordtype">int</span> argc, <span class="keyword">const</span> <span class="keywordtype">char</span>** argv);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classUserInterface.html#a54acd22caa33a4af75db9cff26372c73">fileExists</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    std::string <a class="code hl_function" href="classUserInterface.html#a5c785c74f02ab4d6b47294abed18d03c">getDescription</a>();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classUserInterface.html#ac4f4703f4f244b97ce0d875990879c22">   79</a></span>    <a class="code hl_struct" href="structParams.html">Params</a> <a class="code hl_function" href="classUserInterface.html#ac4f4703f4f244b97ce0d875990879c22">getParams</a>() {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classUserInterface.html#ad5078d6d2a0953315f2a03f50fcf91d0">params</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    };</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>};</div>
+<div class="ttc" id="aclassUserInterface_html"><div class="ttname"><a href="classUserInterface.html">UserInterface</a></div><div class="ttdoc">Класс UserInterface.</div><div class="ttdef"><b>Definition:</b> UserInterface.h:36</div></div>
+<div class="ttc" id="aclassUserInterface_html_a1e674eb55d4585aad18a6000bcdccd7f"><div class="ttname"><a href="classUserInterface.html#a1e674eb55d4585aad18a6000bcdccd7f">UserInterface::vm</a></div><div class="ttdeci">po::variables_map vm</div><div class="ttdoc">Ассоциативный массив, который используется для хранений знчений командной строки</div><div class="ttdef"><b>Definition:</b> UserInterface.h:39</div></div>
+<div class="ttc" id="aclassUserInterface_html_a54acd22caa33a4af75db9cff26372c73"><div class="ttname"><a href="classUserInterface.html#a54acd22caa33a4af75db9cff26372c73">UserInterface::fileExists</a></div><div class="ttdeci">bool fileExists(const std::string &amp;filename)</div><div class="ttdoc">Метод проверки существования файлов</div><div class="ttdef"><b>Definition:</b> UserInterface.cpp:20</div></div>
+<div class="ttc" id="aclassUserInterface_html_a5c785c74f02ab4d6b47294abed18d03c"><div class="ttname"><a href="classUserInterface.html#a5c785c74f02ab4d6b47294abed18d03c">UserInterface::getDescription</a></div><div class="ttdeci">std::string getDescription()</div><div class="ttdoc">Метод получения справки</div><div class="ttdef"><b>Definition:</b> UserInterface.cpp:72</div></div>
+<div class="ttc" id="aclassUserInterface_html_a8732adad80804d2e9faab20fb67e982a"><div class="ttname"><a href="classUserInterface.html#a8732adad80804d2e9faab20fb67e982a">UserInterface::desc</a></div><div class="ttdeci">po::options_description desc</div><div class="ttdoc">Объект, содержащий справку к пользовательскому интерфейсу</div><div class="ttdef"><b>Definition:</b> UserInterface.h:38</div></div>
+<div class="ttc" id="aclassUserInterface_html_ac4f4703f4f244b97ce0d875990879c22"><div class="ttname"><a href="classUserInterface.html#ac4f4703f4f244b97ce0d875990879c22">UserInterface::getParams</a></div><div class="ttdeci">Params getParams()</div><div class="ttdoc">Метод получения параметров из структуры Params.</div><div class="ttdef"><b>Definition:</b> UserInterface.h:79</div></div>
+<div class="ttc" id="aclassUserInterface_html_ad5078d6d2a0953315f2a03f50fcf91d0"><div class="ttname"><a href="classUserInterface.html#ad5078d6d2a0953315f2a03f50fcf91d0">UserInterface::params</a></div><div class="ttdeci">Params params</div><div class="ttdoc">Объект структуры Params.</div><div class="ttdef"><b>Definition:</b> UserInterface.h:40</div></div>
+<div class="ttc" id="aclassUserInterface_html_adbce186e2a500e1e9566388cd51ed7a4"><div class="ttname"><a href="classUserInterface.html#adbce186e2a500e1e9566388cd51ed7a4">UserInterface::Parser</a></div><div class="ttdeci">bool Parser(int argc, const char **argv)</div><div class="ttdoc">Метод разбора значений командной строки</div><div class="ttdef"><b>Definition:</b> UserInterface.cpp:25</div></div>
+<div class="ttc" id="aclassUserInterface_html_ae6fb70370701b3bd6120e923df9705b0"><div class="ttname"><a href="classUserInterface.html#ae6fb70370701b3bd6120e923df9705b0">UserInterface::UserInterface</a></div><div class="ttdeci">UserInterface()</div><div class="ttdoc">Конструктор класса UserInterface.</div><div class="ttdef"><b>Definition:</b> UserInterface.cpp:12</div></div>
+<div class="ttc" id="astructParams_html"><div class="ttname"><a href="structParams.html">Params</a></div><div class="ttdoc">Структура для хранения значений, полученных из командной строки</div><div class="ttdef"><b>Definition:</b> UserInterface.h:28</div></div>
+<div class="ttc" id="astructParams_html_a19406f57a8fcbb9ab7c56db1bc34bd37"><div class="ttname"><a href="structParams.html#a19406f57a8fcbb9ab7c56db1bc34bd37">Params::logfile</a></div><div class="ttdeci">std::string logfile</div><div class="ttdoc">Строка, содержащая название файла журнала</div><div class="ttdef"><b>Definition:</b> UserInterface.h:29</div></div>
+<div class="ttc" id="astructParams_html_a6ca678421b35d548d3c7c579b5f38e1b"><div class="ttname"><a href="structParams.html#a6ca678421b35d548d3c7c579b5f38e1b">Params::port</a></div><div class="ttdeci">unsigned short int port</div><div class="ttdoc">Значение сетевого порта, на котором работает сервер</div><div class="ttdef"><b>Definition:</b> UserInterface.h:31</div></div>
+<div class="ttc" id="astructParams_html_a90e5823d1ca3b3480b32b98cc7575d48"><div class="ttname"><a href="structParams.html#a90e5823d1ca3b3480b32b98cc7575d48">Params::database</a></div><div class="ttdeci">std::string database</div><div class="ttdoc">Строка, содержащая название файла с базой клиентов</div><div class="ttdef"><b>Definition:</b> UserInterface.h:30</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+</small></address>
+</body>
+</html>

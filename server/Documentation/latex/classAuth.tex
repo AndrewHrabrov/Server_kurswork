@@ -1,0 +1,233 @@
+\hypertarget{classAuth}{}\doxysection{Класс Auth}
+\label{classAuth}\index{Auth@{Auth}}
+
+
+Класс аутентификации  
+
+
+
+
+{\ttfamily \#include $<$auth.\+h$>$}
+
+
+
+Граф связей класса Auth\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=139pt]{classAuth__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAuth_a3990b0eb55e143c0c600d0b833ca7c20}{Auth}} (int socket, std\+::string file)
+\begin{DoxyCompactList}\small\item\em Конструктор класса \mbox{\hyperlink{classAuth}{Auth}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAuth_ad8dc7bc4d6f0e02ef07977148aba71e5}\label{classAuth_ad8dc7bc4d6f0e02ef07977148aba71e5}} 
+{\bfseries $\sim$\+Auth} ()
+\begin{DoxyCompactList}\small\item\em Деструктор класса \mbox{\hyperlink{classAuth}{Auth}} освобождает динамическую память, выделенную после создания объекта класса SHA1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAuth_ad3bcc3032fad8521067715b7ba806c51}{authentication}} (int socket, std\+::string \mbox{\hyperlink{classAuth_a03eaac320cb5f741ab3205ea28f026d4}{database}})
+\begin{DoxyCompactList}\small\item\em Функция аутентификации \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые члены}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classAuth_a7fa87faa3991e7fbb49be83408cb1e11}{read\+\_\+buffer}} ()
+\begin{DoxyCompactList}\small\item\em Функция чтения данных из буфера методом удвоения в цикле \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAuth_ac0b6895f67f99b404aca24ef30d73c97}{send\+Message}} (int socket, const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Функция отправки данных клиенту \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classAuth_af1406df4619c154a3d0d16e116f03aaf}{calculate\+Hash}} (const std\+::string \&pass, const std\+::string \&salt)
+\begin{DoxyCompactList}\small\item\em Функция вычисления хэша \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAuth_a7c8ed11f95a8e6352bba7b71bf8386cd}{process\+Vectors}} (int client\+\_\+socket)
+\begin{DoxyCompactList}\small\item\em Функция обработки векторов \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classAuth_aa53d9bec1c891243b2d42d7b407c5c81}{get\+Pass}} (const std\+::string \&filename, const std\+::string \&username)
+\begin{DoxyCompactList}\small\item\em Функция поиска пароля по логину \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAuth_a666455f2d54f4cc804c736beffacc6c2}\label{classAuth_a666455f2d54f4cc804c736beffacc6c2}} 
+int {\bfseries client\+Socket}
+\begin{DoxyCompactList}\small\item\em Клиентский сокет \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAuth_a03eaac320cb5f741ab3205ea28f026d4}\label{classAuth_a03eaac320cb5f741ab3205ea28f026d4}} 
+std\+::string {\bfseries database}
+\begin{DoxyCompactList}\small\item\em Строка, содержащая название файла с базой клиентов \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAuth_ac2d7921b0cbb646349851bf18956908f}\label{classAuth_ac2d7921b0cbb646349851bf18956908f}} 
+std\+::string {\bfseries logfile}
+\begin{DoxyCompactList}\small\item\em Строка, содержащая название файла журнала \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAuth_a2527b8c893bf56d54cf3854975ec0f7f}\label{classAuth_a2527b8c893bf56d54cf3854975ec0f7f}} 
+\mbox{\hyperlink{classLogger}{Logger}} {\bfseries logger}
+\begin{DoxyCompactList}\small\item\em Объект класса \mbox{\hyperlink{classLogger}{Logger}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAuth_a229561428b478834cfe087927aebf553}\label{classAuth_a229561428b478834cfe087927aebf553}} 
+Crypto\+PP\+::\+Hash\+Transformation $\ast$ {\bfseries hash}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс аутентификации 
+
+В конструкторе устанавливается клиентский сокет и название файла журнала для логирования. Класс содержит главную функцию аутентификации, метод чтений данных из буфера, метод поиска пароля из базы данных, метод отправки сообщения клиенту, метод вычисления хэша и метод приема и обработки векторов. 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classAuth_a3990b0eb55e143c0c600d0b833ca7c20}\label{classAuth_a3990b0eb55e143c0c600d0b833ca7c20}} 
+\index{Auth@{Auth}!Auth@{Auth}}
+\index{Auth@{Auth}!Auth@{Auth}}
+\doxysubsubsection{\texorpdfstring{Auth()}{Auth()}}
+{\footnotesize\ttfamily Auth\+::\+Auth (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{std\+::string}]{file }\end{DoxyParamCaption})}
+
+
+
+Конструктор класса \mbox{\hyperlink{classAuth}{Auth}}. 
+
+Констурктор устанавливает клиентский сокет, название файла журнала, вызывает конструктор класса \mbox{\hyperlink{classLogger}{Logger}} и создает новый объект класса SHA1 для метода вычисления хэша 
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em socket} & клиентский сокет, file название файла журнала \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classAuth_ad3bcc3032fad8521067715b7ba806c51}\label{classAuth_ad3bcc3032fad8521067715b7ba806c51}} 
+\index{Auth@{Auth}!authentication@{authentication}}
+\index{authentication@{authentication}!Auth@{Auth}}
+\doxysubsubsection{\texorpdfstring{authentication()}{authentication()}}
+{\footnotesize\ttfamily void Auth\+::authentication (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{std\+::string}]{database }\end{DoxyParamCaption})}
+
+
+
+Функция аутентификации 
+
+Принимает сообщение от клиента и извлекает из него логин, соль и хэш. Затем по извлеченному логину в базе данных ищется пароль вычисляется хэш и сравнивается с хэшем, полученным от клиента. Если хэши совпадают, то клиенту отправляется сообщение \char`\"{}\+OK\char`\"{}, в противном случае клиенту отправляется сообщение \char`\"{}\+ERR\char`\"{} и возбуждается исключение \mbox{\hyperlink{classauth__error}{auth\+\_\+error}}. 
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em socket} & клиентский сокет \\
+\hline
+\mbox{\texttt{ in}}  & {\em database} & название файла с базой данных \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em \mbox{\hyperlink{classFileError}{File\+Error}},если} & файл не открывается или его не существует \\
+\hline
+{\em \mbox{\hyperlink{classauth__error}{auth\+\_\+error}},если} & из сообщения не удалось извлечь логин или если пароли не совпадают \\
+\hline
+{\em std\+::system\+\_\+error,при} & ошибках, связанных с приемом или отправкой данных клиенту \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classAuth_af1406df4619c154a3d0d16e116f03aaf}\label{classAuth_af1406df4619c154a3d0d16e116f03aaf}} 
+\index{Auth@{Auth}!calculateHash@{calculateHash}}
+\index{calculateHash@{calculateHash}!Auth@{Auth}}
+\doxysubsubsection{\texorpdfstring{calculateHash()}{calculateHash()}}
+{\footnotesize\ttfamily std\+::string Auth\+::calculate\+Hash (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{pass,  }\item[{const std\+::string \&}]{salt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Функция вычисления хэша 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em pass} & пароль \\
+\hline
+\mbox{\texttt{ in}}  & {\em salt} & соль \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+hash\+\_\+16 строка, содержащая хэш 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Исключения}
+{\em \mbox{\hyperlink{classauth__error}{auth\+\_\+error}},если} & вычисленный хэш и хэш, полученный от клиента не совпадают \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classAuth_aa53d9bec1c891243b2d42d7b407c5c81}\label{classAuth_aa53d9bec1c891243b2d42d7b407c5c81}} 
+\index{Auth@{Auth}!getPass@{getPass}}
+\index{getPass@{getPass}!Auth@{Auth}}
+\doxysubsubsection{\texorpdfstring{getPass()}{getPass()}}
+{\footnotesize\ttfamily std\+::string Auth\+::get\+Pass (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{const std\+::string \&}]{username }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Функция поиска пароля по логину 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em filename} & файл с базой клиетов \\
+\hline
+\mbox{\texttt{ in}}  & {\em username} & логин \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+pass строка, содержащая пароль, соответствующий логину 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Исключения}
+{\em \mbox{\hyperlink{classFileError}{File\+Error}},если} & невозможно открыть файл или его не существует \\
+\hline
+{\em \mbox{\hyperlink{classauth__error}{auth\+\_\+error}},если} & логин не найден или строки базы данных не соответствуют формату \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classAuth_a7c8ed11f95a8e6352bba7b71bf8386cd}\label{classAuth_a7c8ed11f95a8e6352bba7b71bf8386cd}} 
+\index{Auth@{Auth}!processVectors@{processVectors}}
+\index{processVectors@{processVectors}!Auth@{Auth}}
+\doxysubsubsection{\texorpdfstring{processVectors()}{processVectors()}}
+{\footnotesize\ttfamily void Auth\+::process\+Vectors (\begin{DoxyParamCaption}\item[{int}]{client\+\_\+socket }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Функция обработки векторов 
+
+Функция принимает количество векторов, длину вектора и его значения и вычисляет сумму квадратов для каждого вектора и отправляет результат клиенту. В случае переполнения клиенту отправляется максимальное значения для типа uint32\+\_\+t. 
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em client\+\_\+socket} & клиентский сокет \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em std\+::system\+\_\+error,при} & ошибках, связанных с приемом или отправкой данных клиенту \\
+\hline
+{\em \mbox{\hyperlink{classvector__error}{vector\+\_\+error}},если} & длина вектора больше максимального значения для uint32\+\_\+t или длина вектора отрицательная \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classAuth_a7fa87faa3991e7fbb49be83408cb1e11}\label{classAuth_a7fa87faa3991e7fbb49be83408cb1e11}} 
+\index{Auth@{Auth}!read\_buffer@{read\_buffer}}
+\index{read\_buffer@{read\_buffer}!Auth@{Auth}}
+\doxysubsubsection{\texorpdfstring{read\_buffer()}{read\_buffer()}}
+{\footnotesize\ttfamily std\+::string Auth\+::read\+\_\+buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Функция чтения данных из буфера методом удвоения в цикле 
+
+\begin{DoxyReturn}{Возвращает}
+res Данные из буфера 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Исключения}
+{\em std\+::system\+\_\+error,если} & буфер пустой или при ошибках приема данных от клиента \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classAuth_ac0b6895f67f99b404aca24ef30d73c97}\label{classAuth_ac0b6895f67f99b404aca24ef30d73c97}} 
+\index{Auth@{Auth}!sendMessage@{sendMessage}}
+\index{sendMessage@{sendMessage}!Auth@{Auth}}
+\doxysubsubsection{\texorpdfstring{sendMessage()}{sendMessage()}}
+{\footnotesize\ttfamily void Auth\+::send\+Message (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Функция отправки данных клиенту 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em socket} & клиентский сокет \\
+\hline
+\mbox{\texttt{ in}}  & {\em message} & сообщение, отправляемое клиенту \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em std\+::system\+\_\+error,при} & ошибках оправки данных клиенту \\
+\hline
+\end{DoxyExceptions}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{auth_8h}{auth.\+h}}\item 
+auth.\+cpp\end{DoxyCompactItemize}

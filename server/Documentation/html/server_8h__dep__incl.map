@@ -1,0 +1,4 @@
+<map id="server.h" name="server.h">
+<area shape="rect" id="node1" title="Заголовочный файл для модуля сетевого взаимодействия server.h." alt="" coords="5,5,80,32"/>
+<area shape="rect" id="node2" href="$auth_8h.html" title="Заголовочный файл для модуля аутентификации auth.h." alt="" coords="11,80,74,107"/>
+</map>

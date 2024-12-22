@@ -1,0 +1,45 @@
+\hypertarget{server_8h_source}{}\doxysection{server.\+h}
+\mbox{\hyperlink{server_8h}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <netinet/in.h>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <sys/socket.h>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <unistd.h>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <arpa/inet.h>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{27 \textcolor{keyword}{class }\mbox{\hyperlink{classLogger}{Logger}} \{}
+\DoxyCodeLine{28 \textcolor{keyword}{public}:}
+\DoxyCodeLine{35     \mbox{\hyperlink{classLogger_a4f2ee02db1d03a83b6b9b43808e09f15}{Logger}}(\textcolor{keyword}{const} std::string\& filename);}
+\DoxyCodeLine{36     }
+\DoxyCodeLine{43     \textcolor{keywordtype}{void} \mbox{\hyperlink{classLogger_a354991ef8abbbde3af26d4ecc0688a87}{logError}}(\textcolor{keyword}{const} std::string\& message, \textcolor{keywordtype}{bool} critical);}
+\DoxyCodeLine{44 \textcolor{keyword}{private}:}
+\DoxyCodeLine{45     std::ofstream \mbox{\hyperlink{classLogger_acc94bd19d6a022e574a5733c87fed67a}{logFile}}; }
+\DoxyCodeLine{46     std::string \mbox{\hyperlink{classLogger_a754ba70fbdab7693f357da693fb8d49e}{logFilename}}; }
+\DoxyCodeLine{47     }
+\DoxyCodeLine{52     std::string \mbox{\hyperlink{classLogger_a8483479118aba0b4aa3c47a2d7508394}{getCurrentDateTime}}();}
+\DoxyCodeLine{53 \};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{62 \textcolor{keyword}{class }\mbox{\hyperlink{classServer}{Server}} \{}
+\DoxyCodeLine{63 \textcolor{keyword}{public}:}
+\DoxyCodeLine{74     \mbox{\hyperlink{classServer_a572426d34d2445f1be40b73d510bd5d6}{Server}}(\textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classServer_ad8af61b1605f1972b7d1c95f40854c74}{database}}, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} \mbox{\hyperlink{classServer_ab6806aed9fd9ea0838df416adf64a363}{port}}, \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classServer_a9bbab8b9d22be6f8a6ab2503f1b92c45}{logfile}});}
+\DoxyCodeLine{75     \mbox{\hyperlink{classServer_a4b3aa2579cb1c8cd1d069582c14d0fa6}{\string~Server}}(); }
+\DoxyCodeLine{76     }
+\DoxyCodeLine{83     \textcolor{keywordtype}{void} \mbox{\hyperlink{classServer_abb27d30b40a94326e3fd629d3b30b7d5}{run}}();}
+\DoxyCodeLine{84     }
+\DoxyCodeLine{85 \textcolor{keyword}{private}:}
+\DoxyCodeLine{86     std::string \mbox{\hyperlink{classServer_ad8af61b1605f1972b7d1c95f40854c74}{database}}; }
+\DoxyCodeLine{87     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} \mbox{\hyperlink{classServer_ab6806aed9fd9ea0838df416adf64a363}{port}}; }
+\DoxyCodeLine{88     std::string \mbox{\hyperlink{classServer_a9bbab8b9d22be6f8a6ab2503f1b92c45}{logfile}}; }
+\DoxyCodeLine{89     \mbox{\hyperlink{classLogger}{Logger}} \mbox{\hyperlink{classServer_ab50b5b20130564ba7e9a12032070882f}{logger}}; }
+\DoxyCodeLine{90     \textcolor{keywordtype}{int} \mbox{\hyperlink{classServer_a0e1f90d176dd31898b84088e6f4c1d87}{serverSocket}}; }
+\DoxyCodeLine{91     std::unique\_ptr<sockaddr\_in> \mbox{\hyperlink{classServer_a94cd700bcc038e1cffe3b0849c49ba49}{self\_addr}}; }
+\DoxyCodeLine{92     std::unique\_ptr<sockaddr\_in> \mbox{\hyperlink{classServer_ac2379f0fc836ff68fc10ca4ad2c1e951}{foreign\_addr}}; }
+\DoxyCodeLine{93 \};}
+
+\end{DoxyCode}

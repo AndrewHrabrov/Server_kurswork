@@ -1,0 +1,111 @@
+\hypertarget{classServer}{}\doxysection{Класс Server}
+\label{classServer}\index{Server@{Server}}
+
+
+Класс сетевого взаимодействия  
+
+
+
+
+{\ttfamily \#include $<$server.\+h$>$}
+
+
+
+Граф связей класса Server\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=139pt]{classServer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classServer_a572426d34d2445f1be40b73d510bd5d6}{Server}} (const std\+::string \&\mbox{\hyperlink{classServer_ad8af61b1605f1972b7d1c95f40854c74}{database}}, unsigned short int \mbox{\hyperlink{classServer_ab6806aed9fd9ea0838df416adf64a363}{port}}, const std\+::string \&\mbox{\hyperlink{classServer_a9bbab8b9d22be6f8a6ab2503f1b92c45}{logfile}})
+\begin{DoxyCompactList}\small\item\em Конструктор класса \mbox{\hyperlink{classServer}{Server}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classServer_a4b3aa2579cb1c8cd1d069582c14d0fa6}\label{classServer_a4b3aa2579cb1c8cd1d069582c14d0fa6}} 
+{\bfseries $\sim$\+Server} ()
+\begin{DoxyCompactList}\small\item\em Деструктор класса \mbox{\hyperlink{classServer}{Server}}. Закрывает серверный сокет \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classServer_abb27d30b40a94326e3fd629d3b30b7d5}{run}} ()
+\begin{DoxyCompactList}\small\item\em Метод запуска сервера \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classServer_ad8af61b1605f1972b7d1c95f40854c74}\label{classServer_ad8af61b1605f1972b7d1c95f40854c74}} 
+std\+::string {\bfseries database}
+\begin{DoxyCompactList}\small\item\em Название файла с базой клиентов \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classServer_ab6806aed9fd9ea0838df416adf64a363}\label{classServer_ab6806aed9fd9ea0838df416adf64a363}} 
+unsigned short int {\bfseries port}
+\begin{DoxyCompactList}\small\item\em Значение сетевого порта, на котором работает сервер \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classServer_a9bbab8b9d22be6f8a6ab2503f1b92c45}\label{classServer_a9bbab8b9d22be6f8a6ab2503f1b92c45}} 
+std\+::string {\bfseries logfile}
+\begin{DoxyCompactList}\small\item\em Название файла журнала \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classServer_ab50b5b20130564ba7e9a12032070882f}\label{classServer_ab50b5b20130564ba7e9a12032070882f}} 
+\mbox{\hyperlink{classLogger}{Logger}} {\bfseries logger}
+\begin{DoxyCompactList}\small\item\em Объект класса \mbox{\hyperlink{classLogger}{Logger}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classServer_a0e1f90d176dd31898b84088e6f4c1d87}\label{classServer_a0e1f90d176dd31898b84088e6f4c1d87}} 
+int {\bfseries server\+Socket}
+\begin{DoxyCompactList}\small\item\em Идентификатор серверного сокета \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classServer_a94cd700bcc038e1cffe3b0849c49ba49}\label{classServer_a94cd700bcc038e1cffe3b0849c49ba49}} 
+std\+::unique\+\_\+ptr$<$ sockaddr\+\_\+in $>$ {\bfseries self\+\_\+addr}
+\begin{DoxyCompactList}\small\item\em Умный указатель серверного адреса \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classServer_ac2379f0fc836ff68fc10ca4ad2c1e951}\label{classServer_ac2379f0fc836ff68fc10ca4ad2c1e951}} 
+std\+::unique\+\_\+ptr$<$ sockaddr\+\_\+in $>$ {\bfseries foreign\+\_\+addr}
+\begin{DoxyCompactList}\small\item\em Умный указатель адреса клиента \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс сетевого взаимодействия 
+
+В конструкторе устанавливается название файла журнала для логирования название файла с базой клиентов и сетевой порт, создается серверный сокет, подготавливаются сетевые адреса и привязывается адрес к серверному сокету Класс содержит метод run для запуска сервера. 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classServer_a572426d34d2445f1be40b73d510bd5d6}\label{classServer_a572426d34d2445f1be40b73d510bd5d6}} 
+\index{Server@{Server}!Server@{Server}}
+\index{Server@{Server}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{Server()}{Server()}}
+{\footnotesize\ttfamily Server\+::\+Server (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{database,  }\item[{unsigned short int}]{port,  }\item[{const std\+::string \&}]{logfile }\end{DoxyParamCaption})}
+
+
+
+Конструктор класса \mbox{\hyperlink{classServer}{Server}}. 
+
+Конструктор устанавливает название файла журнала, название файла с базой клиентов и порт, вызывает конструктор класса \mbox{\hyperlink{classLogger}{Logger}}. Создает серверный сокет, настравиваются сетевые адреса и привязывается адрес к серверному порту. 
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em database} & файл с базой клиентов ~\newline
+ \\
+\hline
+\mbox{\texttt{ in}}  & {\em port} & сетевой порт, на котором будет работать сервер \\
+\hline
+\mbox{\texttt{ in}}  & {\em logfile} & название файла журнала \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em \mbox{\hyperlink{classserver__error}{server\+\_\+error}},при} & возникновения ошибок создания сокета или привязки адреса к серверному сокету \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classServer_abb27d30b40a94326e3fd629d3b30b7d5}\label{classServer_abb27d30b40a94326e3fd629d3b30b7d5}} 
+\index{Server@{Server}!run@{run}}
+\index{run@{run}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Server\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Метод запуска сервера 
+
+Переводит сервер в режим прослушивания, устанавливает соединения с клиентом и вызывает функцию аутентификации, если соединение установлено. 
+\begin{DoxyExceptions}{Исключения}
+{\em \mbox{\hyperlink{classserver__error}{server\+\_\+error}},при} & возникновения ошибок прослушивания или установки соединения с клиентом \\
+\hline
+\end{DoxyExceptions}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{server_8h}{server.\+h}}\item 
+server.\+cpp\end{DoxyCompactItemize}
